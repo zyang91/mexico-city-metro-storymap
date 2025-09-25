@@ -19,29 +19,32 @@ const data = await resp.json();
 
 const slideOptions = {
   'second-slide': {
-    // bbox: [-99.9, 19.2, -99.1, 19.6],
     bounds: L.geoJSON(data.features.find(f => f.properties.LINEA == '1')).getBounds(),
     style: (feature) => {
       return {
-        color: 'red',
-        fillColor: 'green',
-        fillOpacity: 0.5,
+        color: `#${feature.properties.color}`,
+        weight: 4,
+        opacity: 0.8,
       };
     },
     onEachFeature: (feature, layer) => {
-      layer.bindTooltip(feature.properties.label);
+      const lineNumber = feature.properties.LINEA;
+      const routeName = feature.properties.RUTA;
+      layer.bindTooltip(`Metro Line ${lineNumber}: ${routeName}`);
     },
   },
   'third-slide': {
     style: (feature) => {
       return {
-        color: 'blue',
-        fillColor: 'yellow',
-        fillOpacity: 0.5,
+        color: `#${feature.properties.color}`,
+        weight: 4,
+        opacity: 0.8,
       };
     },
     onEachFeature: (feature, layer) => {
-      layer.bindTooltip(feature.properties.label);
+      const lineNumber = feature.properties.LINEA;
+      const routeName = feature.properties.RUTA;
+      layer.bindTooltip(`Metro Line ${lineNumber}: ${routeName}`);
     },
   },
 };

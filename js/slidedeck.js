@@ -38,10 +38,28 @@ class SlideDeck {
 
     const defaultOptions = {
       pointToLayer: (p, latlng) => L.marker(latlng),
-      style: (feature) => feature.properties.style,
+      style: (feature) => {
+        // Use the color from GeoJSON properties if available, otherwise use a default
+        if (feature.properties && feature.properties.color) {
+          return {
+            color: `#${feature.properties.color}`,
+            weight: 4,
+            opacity: 0.8,
+          };
+        }
+        return feature.properties.style || {
+          color: '#3388ff',
+          weight: 3,
+          opacity: 0.6,
+        };
+      },
       onEachFeature: (feature, layer) => {
         if (feature.properties && feature.properties.label) {
           layer.bindTooltip(feature.properties.label);
+        } else if (feature.properties && feature.properties.LINEA && feature.properties.RUTA) {
+          const lineNumber = feature.properties.LINEA;
+          const routeName = feature.properties.RUTA;
+          layer.bindTooltip(`Metro Line ${lineNumber}: ${routeName}`);
         }
       }
     };

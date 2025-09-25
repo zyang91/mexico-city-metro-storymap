@@ -24,34 +24,45 @@
 .cover-title {
   position: absolute;
   color: white;
-  font-size: 2.5rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 700;
   text-align: center;
   z-index: 1000;
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  letter-spacing: 1px;
 }
 
 .cover-subtitle {
-  font-size: 1.2rem;
-  color: rgb(255, 252, 252);
+  font-family: 'Lora', serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: rgb(255, 255, 255);
   margin: 0.5rem 0;
   position: absolute;
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1000;            
+  z-index: 1000;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+  font-style: italic;
 }
 
 .cover-author {
-  font-size: 1rem;
-  color: rgb(252, 251, 251);
+  font-family: 'Lora', serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: rgb(255, 255, 255);
   position: absolute;
   top: 53%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.5px;
 }
 
 
@@ -59,8 +70,47 @@ body {
   margin: 0;
   border-width: 0;
   box-sizing: border-box;
-  height: 100vh;
-  font-family: 'Open Sans', sans-serif;
+  min-height: 100vh;
+  font-family: 'Lora', serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.overview {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  margin: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.overview h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.overview p {
+  font-family: 'Lora', serif;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: white;
+  max-width: 800px;
+  margin: 0 auto;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 .map-container {
@@ -87,16 +137,39 @@ body {
   margin-bottom: 90vh;
   margin-left: auto;
   margin-right: 2rem;
-  padding: 1rem;
-  box-shadow: -0.5rem 0 1rem rgba(0 0 0 / 50%);
-  border: 1px solid gray;
-  border-radius: 0.5rem;
+  padding: 2rem;
+  box-shadow: -0.5rem 0 2rem rgba(0 0 0 / 40%), 0 8px 32px rgba(0 0 0 / 20%);
+  border: none;
+  border-radius: 1rem;
   pointer-events: initial;
-
   width: 25rem;
+  background: rgba(255, 255, 255, 0.95);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  color: #2d3748;
+  transition: all 0.3s ease;
+}
 
-  background-color: white;
-  color: black;
+.slide:hover {
+  transform: translateY(-5px);
+  box-shadow: -0.5rem 0 3rem rgba(0 0 0 / 50%), 0 12px 40px rgba(0 0 0 / 25%);
+}
+
+.slide h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1a202c;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.slide p {
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #4a5568;
+  margin-bottom: 1rem;
 }
 
 .slide:first-child {
@@ -118,7 +191,6 @@ body {
 
 .slide-nav-button {
   transition: all 0.1s;
-
   padding: 0;
   margin: 1rem;
   width: 4rem;
@@ -148,10 +220,30 @@ body {
     object-fit: cover;
   }
   .cover-subtitle {
-    font-size: 0.9rem;
-
+    font-size: 1rem;
   }
   .cover-author {
-    font-size: 0.5rem;
+    font-size: 0.8rem;
+  }
+  .overview {
+    margin: 1rem;
+    padding: 2rem 1rem;
+  }
+  .overview h2 {
+    font-size: 2rem;
+  }
+  .overview p {
+    font-size: 1rem;
+  }
+  .slide {
+    width: 20rem;
+    margin-right: 1rem;
+    padding: 1.5rem;
+  }
+  .slide h2 {
+    font-size: 1.5rem;
+  }
+  .slide p {
+    font-size: 0.9rem;
   }
 }
