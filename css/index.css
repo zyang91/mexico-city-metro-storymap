@@ -40,7 +40,7 @@
   font-family: Lora, serif;
   font-size: 1.4rem;
   font-weight: 500;
-  color: rgb(255, 255, 255);
+  color: rgb(255 255 255);
   margin: 0.5rem 0;
   position: absolute;
   top: 45%;
@@ -55,7 +55,7 @@
   font-family: Lora, serif;
   font-size: 1.1rem;
   font-weight: 400;
-  color: rgb(255, 255, 255);
+  color: rgb(255 255 255);
   position: absolute;
   top: 53%;
   left: 50%;
@@ -72,15 +72,8 @@ body {
   box-sizing: border-box;
   min-height: 100vh;
   font-family: Lora, serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
-  background-size: 400% 400%;
 }
 
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
 
 .overview {
   padding: 4rem 2rem;
@@ -95,7 +88,7 @@ body {
   font-family: 'Playfair Display', serif;
   font-size: 2.5rem;
   font-weight: 600;
-  color: white;
+  color: rgb(255 255 255);
   margin-bottom: 1.5rem;
   text-shadow: 2px 2px 4px rgb(0, 0, 0, 50%);
 }
@@ -104,7 +97,7 @@ body {
   font-family: Lora, serif;
   font-size: 1.2rem;
   line-height: 1.6;
-  color: white;
+  color: rgb(255 255 255);
   max-width: 800px;
   margin: 0 auto;
   text-shadow: 1px 1px 2px rgb(0 0 0/ 40%);
