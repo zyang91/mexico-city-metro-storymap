@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Story</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+  <div class="cover">
+    <img src="pic/Metrobus-CDMX.jpg" alt="Cover Image" class="cover-image">
+    <h1 class="cover-title">Inside Mexico City’s High-Capacity Transit</h1>
+    <h3 class="cover-subtitle">Metro and Metrobús shaping flows of people, places, and possibility</h3>
+    <p class="cover-author">By: Zhanchao Yang | Date: 2025.09.17</p>
+  </div>
+  <main>
+    <div class="map-container">
+      <div class="map" id="map"></div>
+    </div>
+    <section class="slide-section">
+      <article class="slide" id="title-slide">
+        <h2>Introduction</h2>
+        <p>Since 2012, Mexico City have put significant amount of investment in high capacity Transit. The Metro (heavy rail) and Metrobús (BRT) become the backbone for millions of daily trips, connecting people from jobs, education, and services at a metropolitan scale. </p>
+        <p>Recent investments in Line 1’s overhaul, BRT electrification, and network expansions, show how the region is upgrading legacy assets while extending reach to underserved areas.</p></p>
+      </article>
+
+      <article class="slide" id="second-slide">
+        <h2>Origin and history</h2>
+        <p>Opened in 1969 with 16 stations, the Metro was Mexico City’s answer to congestion and growth. Designers chose color-coded lines and iconic station pictograms to aid wayfinding, which became part of the city’s visual culture. Built largely with rubber-tired trains, the system expanded rapidly through the 1970s–80s.</p>
+        <p>Today, the Metro network spans 12 lines and 195 stations, carrying over 1.17 billion riders in 2024, one of the busiest in the Americas. Service hours expanded to 5:00–24:00.</p>
+      </article>
+
+      <article class="slide" id="third-slide">
+        <h2>BRT arrives:Metrobús</h2>
+        <p>Launched in 2005, Metrobús introduced center-running busways, platform fare gates, and multiple doors for fast boarding,bringing “metro-like” reliability to arterial corridors. The network has grown to multiple lines linking major Metro hubs, the historic center, Reforma, and the airport.</p>
+        <p>Recently, CDMX is adding 26 new electric buses and planning two large expansions: Line 0 (Circuito Interior) and Line 8 (Periférico). Line 7 will extend to Toreo. These corridors improvement target heavy demand and promise big emissions cuts.</p>
+      </article>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/index.js" type="module"></script>
+</body>
+</html>
