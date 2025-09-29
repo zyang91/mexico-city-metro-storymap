@@ -54,11 +54,14 @@ const slideOptions = {
     bounds: L.geoJSON(metroData.features.find(f => f.properties.LINEA == '1')).getBounds(),
     datasets: ['metro'],
     layerStyles: {
-      metro: (feature) => ({
-        color: `#${feature.properties.color}`,
-        weight: 4,
-        opacity: 0.8,
-      })
+      metro: (feature) => {
+        const isLine1 = feature.properties.LINEA === '1';
+        return {
+          color: `#${feature.properties.color}`,
+          weight: isLine1 ? 5 : 2,
+          opacity: isLine1 ? 1.0 : 0.3,
+        };
+      }
     },
     layerTooltips: {
       metro: (feature, layer) => {
