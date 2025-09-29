@@ -15,42 +15,274 @@ const slides = document.querySelectorAll('.slide');
 
 // ## load GeoJSON data
 const resp = await fetch('data/lines.geojson');
-const data = await resp.json();
+const metroData = await resp.json();
+
+const respMetrobus = await fetch('data/metrobus.geojson');
+const metrobusData = await respMetrobus.json();
 
 const slideOptions = {
-  'second-slide': {
-    bounds: L.geoJSON(data.features.find(f => f.properties.LINEA == '1')).getBounds(),
-    style: (feature) => {
-      return {
+  'intro-slide':{
+    bounds: L.geoJSON(metroData).getBounds(),
+    datasets: ['metro', 'metrobus'],
+    layerStyles: {
+      metro: (feature) => ({
         color: `#${feature.properties.color}`,
         weight: 4,
         opacity: 0.8,
-      };
+      }),
+      metrobus: (feature) => ({
+        color: '#FF6B35', // Orange color for Metrobus
+        weight: 3,
+        opacity: 0.7,
+        dashArray: '5, 5', // Dashed line to distinguish from metro
+      })
     },
-    onEachFeature: (feature, layer) => {
-      const lineNumber = feature.properties.LINEA;
-      const routeName = feature.properties.RUTA;
-      layer.bindTooltip(`Metro Line ${lineNumber}: ${routeName}`);
-    },
+    layerTooltips: {
+      metro: (feature, layer) => {
+        const lineNumber = feature.properties.LINEA;
+        const routeName = feature.properties.RUTA;
+        layer.bindTooltip(`Metro Line ${lineNumber}: ${routeName}`);
+      },
+      metrobus: (feature, layer) => {
+        const lineNumber = feature.properties.LINEA;
+        const routeName = feature.properties.RUTA;
+        layer.bindTooltip(`Metrobús Line ${lineNumber}: ${routeName}`);
+      }
+    }
   },
-  'third-slide': {
-    style: (feature) => {
-      return {
+  'metro-origins': {
+    bounds: L.geoJSON(metroData.features.find(f => f.properties.LINEA == '1')).getBounds(),
+    datasets: ['metro'],
+    layerStyles: {
+      metro: (feature) => ({
         color: `#${feature.properties.color}`,
         weight: 4,
         opacity: 0.8,
-      };
+      })
     },
-    onEachFeature: (feature, layer) => {
-      const lineNumber = feature.properties.LINEA;
-      const routeName = feature.properties.RUTA;
-      layer.bindTooltip(`Metro Line ${lineNumber}: ${routeName}`);
+    layerTooltips: {
+      metro: (feature, layer) => {
+        const lineNumber = feature.properties.LINEA;
+        const routeName = feature.properties.RUTA;
+        layer.bindTooltip(`Metro Line ${lineNumber}: ${routeName}`);
+      }
+    }
+  },
+  'metro-today-upgrades': {
+    datasets: ['metro'],
+    layerStyles: {
+      metro: (feature) => ({
+        color: `#${feature.properties.color}`,
+        weight: 4,
+        opacity: 0.8,
+      })
     },
+    layerTooltips: {
+      metro: (feature, layer) => {
+        const lineNumber = feature.properties.LINEA;
+        const routeName = feature.properties.RUTA;
+        layer.bindTooltip(`Metro Line ${lineNumber}: ${routeName}`);
+      }
+    }
+  },
+  'metro-experience-safety': {
+    datasets: ['metro'],
+    layerStyles: {
+      metro: (feature) => ({
+        color: `#${feature.properties.color}`,
+        weight: 4,
+        opacity: 0.8,
+      })
+    },
+    layerTooltips: {
+      metro: (feature, layer) => {
+        const lineNumber = feature.properties.LINEA;
+        const routeName = feature.properties.RUTA;
+        layer.bindTooltip(`Metro Line ${lineNumber}: ${routeName}`);
+      }
+    }
+  },
+  'metrobus-origins': {
+    datasets: ['metrobus'],
+    layerStyles: {
+      metrobus: (feature) => ({
+        color: '#FF6B35', // Orange color for Metrobus
+        weight: 4,
+        opacity: 0.9,
+      })
+    },
+    layerTooltips: {
+      metrobus: (feature, layer) => {
+        const lineNumber = feature.properties.LINEA;
+        const routeName = feature.properties.RUTA;
+        layer.bindTooltip(`Metrobús Line ${lineNumber}: ${routeName}`);
+      }
+    }
+  },
+  'metrobus-growth-electrification': {
+    datasets: ['metrobus'],
+    layerStyles: {
+      metrobus: (feature) => ({
+        color: '#FF6B35', // Orange color for Metrobus
+        weight: 4,
+        opacity: 0.9,
+      })
+    },
+    layerTooltips: {
+      metrobus: (feature, layer) => {
+        const lineNumber = feature.properties.LINEA;
+        const routeName = feature.properties.RUTA;
+        layer.bindTooltip(`Metrobús Line ${lineNumber}: ${routeName}`);
+      }
+    }
+  },
+  'integration-fares': {
+    datasets: ['metro', 'metrobus'],
+    layerStyles: {
+      metro: (feature) => ({
+        color: `#${feature.properties.color}`,
+        weight: 4,
+        opacity: 0.8,
+      }),
+      metrobus: (feature) => ({
+        color: '#FF6B35', // Orange color for Metrobus
+        weight: 3,
+        opacity: 0.7,
+        dashArray: '5, 5', // Dashed line to distinguish from metro
+      })
+    },
+    layerTooltips: {
+      metro: (feature, layer) => {
+        const lineNumber = feature.properties.LINEA;
+        const routeName = feature.properties.RUTA;
+        layer.bindTooltip(`Metro Line ${lineNumber}: ${routeName}`);
+      },
+      metrobus: (feature, layer) => {
+        const lineNumber = feature.properties.LINEA;
+        const routeName = feature.properties.RUTA;
+        layer.bindTooltip(`Metrobús Line ${lineNumber}: ${routeName}`);
+      }
+    }
+  },
+  'equity-access': {
+    datasets: ['metro', 'metrobus'],
+    layerStyles: {
+      metro: (feature) => ({
+        color: `#${feature.properties.color}`,
+        weight: 4,
+        opacity: 0.8,
+      }),
+      metrobus: (feature) => ({
+        color: '#FF6B35', // Orange color for Metrobus
+        weight: 3,
+        opacity: 0.7,
+        dashArray: '5, 5', // Dashed line to distinguish from metro
+      })
+    },
+    layerTooltips: {
+      metro: (feature, layer) => {
+        const lineNumber = feature.properties.LINEA;
+        const routeName = feature.properties.RUTA;
+        layer.bindTooltip(`Metro Line ${lineNumber}: ${routeName}`);
+      },
+      metrobus: (feature, layer) => {
+        const lineNumber = feature.properties.LINEA;
+        const routeName = feature.properties.RUTA;
+        layer.bindTooltip(`Metrobús Line ${lineNumber}: ${routeName}`);
+      }
+    }
+  },
+  'climate-public-space': {
+    datasets: ['metro', 'metrobus'],
+    layerStyles: {
+      metro: (feature) => ({
+        color: `#${feature.properties.color}`,
+        weight: 4,
+        opacity: 0.8,
+      }),
+      metrobus: (feature) => ({
+        color: '#FF6B35', // Orange color for Metrobus
+        weight: 3,
+        opacity: 0.7,
+        dashArray: '5, 5', // Dashed line to distinguish from metro
+      })
+    },
+    layerTooltips: {
+      metro: (feature, layer) => {
+        const lineNumber = feature.properties.LINEA;
+        const routeName = feature.properties.RUTA;
+        layer.bindTooltip(`Metro Line ${lineNumber}: ${routeName}`);
+      },
+      metrobus: (feature, layer) => {
+        const lineNumber = feature.properties.LINEA;
+        const routeName = feature.properties.RUTA;
+        layer.bindTooltip(`Metrobús Line ${lineNumber}: ${routeName}`);
+      }
+    }
+  },
+  'resilience-maintenance': {
+    datasets: ['metro', 'metrobus'],
+    layerStyles: {
+      metro: (feature) => ({
+        color: `#${feature.properties.color}`,
+        weight: 4,
+        opacity: 0.8,
+      }),
+      metrobus: (feature) => ({
+        color: '#FF6B35', // Orange color for Metrobus
+        weight: 3,
+        opacity: 0.7,
+        dashArray: '5, 5', // Dashed line to distinguish from metro
+      })
+    },
+    layerTooltips: {
+      metro: (feature, layer) => {
+        const lineNumber = feature.properties.LINEA;
+        const routeName = feature.properties.RUTA;
+        layer.bindTooltip(`Metro Line ${lineNumber}: ${routeName}`);
+      },
+      metrobus: (feature, layer) => {
+        const lineNumber = feature.properties.LINEA;
+        const routeName = feature.properties.RUTA;
+        layer.bindTooltip(`Metrobús Line ${lineNumber}: ${routeName}`);
+      }
+    }
+  },
+  'whats-next': {
+    datasets: ['metro', 'metrobus'],
+    layerStyles: {
+      metro: (feature) => ({
+        color: `#${feature.properties.color}`,
+        weight: 4,
+        opacity: 0.8,
+      }),
+      metrobus: (feature) => ({
+        color: '#FF6B35', // Orange color for Metrobus
+        weight: 3,
+        opacity: 0.7,
+        dashArray: '5, 5', // Dashed line to distinguish from metro
+      })
+    },
+    layerTooltips: {
+      metro: (feature, layer) => {
+        const lineNumber = feature.properties.LINEA;
+        const routeName = feature.properties.RUTA;
+        layer.bindTooltip(`Metro Line ${lineNumber}: ${routeName}`);
+      },
+      metrobus: (feature, layer) => {
+        const lineNumber = feature.properties.LINEA;
+        const routeName = feature.properties.RUTA;
+        layer.bindTooltip(`Metrobús Line ${lineNumber}: ${routeName}`);
+      }
+    }
   },
 };
 
 // ## The SlideDeck object
-const deck = new SlideDeck(container, slides, map, slideOptions);
+const deck = new SlideDeck(container, slides, map, slideOptions, {
+  metro: metroData,
+  metrobus: metrobusData
+});
 
 document.addEventListener('scroll', () => deck.calcCurrentSlideIndex());
 

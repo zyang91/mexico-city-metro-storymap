@@ -9,12 +9,14 @@ class SlideDeck {
    * @param {L.map} map The Leaflet map where data will be shown.
    * @param {object} slideOptions The options to create each slide's L.geoJSON
    *                              layer, keyed by slide ID.
+   * @param {object} datasets The loaded datasets, keyed by dataset name.
    */
-  constructor(container, slides, map, slideOptions = {}) {
+  constructor(container, slides, map, slideOptions = {}, datasets = {}) {
     this.container = container;
     this.slides = slides;
     this.map = map;
     this.slideOptions = slideOptions;
+    this.datasets = datasets;
 
     this.dataLayer = L.layerGroup().addTo(map);
     this.currentSlideIndex = 0;
@@ -25,62 +27,76 @@ class SlideDeck {
    *
    * The updateDataLayer function will clear any markers or shapes previously
    * added to the GeoJSON layer on the map, and replace them with the data
-   * provided in the `data` argument. The `data` should contain a GeoJSON
-   * FeatureCollection object.
+   * from the specified datasets.
    *
-   * @param {object} data A GeoJSON FeatureCollection object
-   * @param {object} options Options to pass to L.geoJSON
-   * @return {L.GeoJSONLayer} The new GeoJSON layer that has been added to the
-   *                          data layer group.
+   * @param {Array} datasetNames Array of dataset names to display
+   * @param {object} options Options for each dataset
+   * @return {Array} Array of GeoJSON layers that have been added to the data layer group.
    */
-  updateDataLayer(data, options) {
+  updateDataLayer(datasetNames, options = {}) {
     this.dataLayer.clearLayers();
+    const layers = [];
 
-    const defaultOptions = {
-      pointToLayer: (p, latlng) => L.marker(latlng),
-      style: (feature) => {
-        // Use the color from GeoJSON properties if available, otherwise use a default
-        if (feature.properties && feature.properties.color) {
-          return {
-            color: `#${feature.properties.color}`,
-            weight: 4,
-            opacity: 0.8,
-          };
-        }
-        return feature.properties.style || {
-          color: '#3388ff',
-          weight: 3,
-          opacity: 0.6,
-        };
-      },
-      onEachFeature: (feature, layer) => {
-        if (feature.properties && feature.properties.label) {
-          layer.bindTooltip(feature.properties.label);
-        } else if (feature.properties && feature.properties.LINEA && feature.properties.RUTA) {
-          const lineNumber = feature.properties.LINEA;
-          const routeName = feature.properties.RUTA;
-          layer.bindTooltip(`Metro Line ${lineNumber}: ${routeName}`);
-        }
-      }
-    };
-    const geoJsonLayer = L.geoJSON(data, options || defaultOptions)
-        .addTo(this.dataLayer);
+    for (const datasetName of datasetNames) {
+      const data = this.datasets[datasetName];
+      if (!data) continue;
 
-    return geoJsonLayer;
+      const layerOptions = {
+        pointToLayer: (p, latlng) => L.marker(latlng),
+        style: options.layerStyles && options.layerStyles[datasetName] ? 
+               options.layerStyles[datasetName] : 
+               (feature) => {
+                 // Use the color from GeoJSON properties if available for metro, otherwise use defaults
+                 if (datasetName === 'metro' && feature.properties && feature.properties.color) {
+                   return {
+                     color: `#${feature.properties.color}`,
+                     weight: 4,
+                     opacity: 0.8,
+                   };
+                 } else if (datasetName === 'metrobus') {
+                   return {
+                     color: '#FF6B35',
+                     weight: 3,
+                     opacity: 0.7,
+                     dashArray: '5, 5',
+                   };
+                 }
+                 return {
+                   color: '#3388ff',
+                   weight: 3,
+                   opacity: 0.6,
+                 };
+               },
+        onEachFeature: options.layerTooltips && options.layerTooltips[datasetName] ?
+                      options.layerTooltips[datasetName] :
+                      (feature, layer) => {
+                        if (feature.properties && feature.properties.LINEA && feature.properties.RUTA) {
+                          const lineNumber = feature.properties.LINEA;
+                          const routeName = feature.properties.RUTA;
+                          const systemName = datasetName === 'metro' ? 'Metro' : 'Metrobús';
+                          layer.bindTooltip(`${systemName} Line ${lineNumber}: ${routeName}`);
+                        }
+                      }
+      };
+
+      const geoJsonLayer = L.geoJSON(data, layerOptions).addTo(this.dataLayer);
+      layers.push(geoJsonLayer);
+    }
+
+    return layers;
   }
 
   /**
-   * ### getSlideFeatureCollection
+   * ### getSlideDatasets
    *
-   * Load the slide's features from a GeoJSON file.
+   * Get the datasets to display for a given slide.
    *
-   * @param {HTMLElement} slide The slide's HTML element. The element id should match the key for the slide's GeoJSON file
-   * @return {object} The FeatureCollection as loaded from the data file
+   * @param {HTMLElement} slide The slide's HTML element
+   * @return {Array} Array of dataset names for this slide
    */
-  async getSlideFeatureCollection(slide) {
-    const resp = await fetch(`data/lines.geojson`);
-    const data = await resp.json();
-    return data;
+  getSlideDatasets(slide) {
+    const options = this.slideOptions[slide.id];
+    return options && options.datasets ? options.datasets : ['metro'];
   }
 
   /**
@@ -104,13 +120,9 @@ class SlideDeck {
    * @param {HTMLElement} slide The slide's HTML element
    */
   async syncMapToSlide(slide) {
-    const collection = await this.getSlideFeatureCollection(slide);
+    const datasetNames = this.getSlideDatasets(slide);
     const options = this.slideOptions[slide.id];
-    // if (options && options.bbox) {
-    //   collection = {...collection, bbox: options.bbox};
-    //   // collection.bbox = options.bbox;
-    // }
-    const layer = this.updateDataLayer(collection, options);
+    const layers = this.updateDataLayer(datasetNames, options);
 
     /**
      * Create a bounds object from a GeoJSON bbox array.
@@ -132,9 +144,11 @@ class SlideDeck {
      */
     const handleFlyEnd = () => {
       if (slide.showpopups) {
-        layer.eachLayer((l) => {
-          l.bindTooltip(l.feature.properties.label, { permanent: true });
-          l.openTooltip();
+        layers.forEach(layer => {
+          layer.eachLayer((l) => {
+            l.bindTooltip(l.feature.properties.label, { permanent: true });
+            l.openTooltip();
+          });
         });
       }
       this.map.removeEventListener('moveend', handleFlyEnd);
@@ -143,10 +157,19 @@ class SlideDeck {
     this.map.addEventListener('moveend', handleFlyEnd);
     if (options && options.bounds) {
       this.map.flyToBounds(options.bounds);
-    } else if (collection.bbox) {
-      this.map.flyToBounds(boundsFromBbox(collection.bbox));
     } else {
-      this.map.flyToBounds(layer.getBounds());
+      // Calculate combined bounds from all layers
+      let combinedBounds = null;
+      layers.forEach(layer => {
+        const layerBounds = layer.getBounds();
+        if (layerBounds.isValid()) {
+          combinedBounds = combinedBounds ? combinedBounds.extend(layerBounds) : layerBounds;
+        }
+      });
+      
+      if (combinedBounds && combinedBounds.isValid()) {
+        this.map.flyToBounds(combinedBounds);
+      }
     }
   }
 
@@ -190,14 +213,11 @@ class SlideDeck {
   /**
    * ### preloadFeatureCollections
    *
-   * Initiate a fetch on all slide data so that the browser can cache the
-   * requests. This way, when a specific slide is loaded it has a better chance
-   * of loading quickly.
+   * All data is already loaded in the constructor, so this method is now
+   * a no-op but kept for compatibility.
    */
   preloadFeatureCollections() {
-    for (const slide of this.slides) {
-      this.getSlideFeatureCollection(slide);
-    }
+    // Data is already preloaded in constructor
   }
 
   /**
