@@ -43,8 +43,8 @@ class SlideDeck {
 
       const layerOptions = {
         pointToLayer: (p, latlng) => L.marker(latlng),
-        style: options.layerStyles && options.layerStyles[datasetName] ? 
-               options.layerStyles[datasetName] : 
+        style: options.layerStyles && options.layerStyles[datasetName] ?
+               options.layerStyles[datasetName] :
                (feature) => {
                  // Use the color from GeoJSON properties if available for metro, otherwise use defaults
                  if (datasetName === 'metro' && feature.properties && feature.properties.color) {
@@ -76,7 +76,7 @@ class SlideDeck {
                           const systemName = datasetName === 'metro' ? 'Metro' : 'Metrobús';
                           layer.bindTooltip(`${systemName} Line ${lineNumber}: ${routeName}`);
                         }
-                      }
+                      },
       };
 
       const geoJsonLayer = L.geoJSON(data, layerOptions).addTo(this.dataLayer);
@@ -144,7 +144,7 @@ class SlideDeck {
      */
     const handleFlyEnd = () => {
       if (slide.showpopups) {
-        layers.forEach(layer => {
+        layers.forEach((layer) => {
           layer.eachLayer((l) => {
             l.bindTooltip(l.feature.properties.label, { permanent: true });
             l.openTooltip();
@@ -154,21 +154,23 @@ class SlideDeck {
       this.map.removeEventListener('moveend', handleFlyEnd);
     };
 
+    const boundsOptions = window.innerWidth > 600 ? {paddingBottomRight: [496, 0]} : {};
+
     this.map.addEventListener('moveend', handleFlyEnd);
     if (options && options.bounds) {
-      this.map.flyToBounds(options.bounds);
+      this.map.flyToBounds(options.bounds, boundsOptions);
     } else {
       // Calculate combined bounds from all layers
       let combinedBounds = null;
-      layers.forEach(layer => {
+      layers.forEach((layer) => {
         const layerBounds = layer.getBounds();
         if (layerBounds.isValid()) {
           combinedBounds = combinedBounds ? combinedBounds.extend(layerBounds) : layerBounds;
         }
       });
-      
+
       if (combinedBounds && combinedBounds.isValid()) {
-        this.map.flyToBounds(combinedBounds);
+        this.map.flyToBounds(combinedBounds, boundsOptions);
       }
     }
   }
