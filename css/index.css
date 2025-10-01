@@ -229,6 +229,12 @@ ul {
   color: #0546b7;
 }
 
+.background-images{
+  position:sticky;
+  top:0;
+  height:100 hv;
+}
+
 @media screen and (width < 480px) {
   .cover-title {
     font-size: 1.5rem;
