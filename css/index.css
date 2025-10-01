@@ -103,6 +103,12 @@ body {
   text-shadow: 1px 1px 2px rgb(0 0 0/ 40%);
 }
 
+.header-emph {
+  font-family:'Courier New', Courier, monospace;
+  color: #068c04;
+  font-weight: 700;
+}
+
 .map-container {
   position: sticky;
   top: 0;
@@ -197,6 +203,30 @@ body {
 
 .slide-nav-select {
   min-width: 0;
+}
+
+.inline-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1rem auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 20%);
+}
+
+ul {
+  padding-left: 1.3rem;
+  text-align: left;
+  font-family: Lora, serif;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #4a5568;
+}
+
+.li-explain{
+  font-style: italic;
+  font-size: 0.7rem;
+  color: #0546b7;
 }
 
 @media screen and (width < 480px) {
