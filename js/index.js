@@ -27,18 +27,6 @@ const slideOptions = {
   'intro-slide': {
     bounds: L.geoJSON(metroData).getBounds(),
     datasets: ['metro', 'metrobus'],
-    layerTooltips: {
-      metro: (feature, layer) => {
-        const lineNumber = feature.properties.LINEA;
-        const routeName = feature.properties.RUTA;
-        layer.bindTooltip(`Metro Line ${lineNumber}: ${routeName}`);
-      },
-      metrobus: (feature, layer) => {
-        const lineNumber = feature.properties.LINEA;
-        const routeName = feature.properties.RUTA;
-        layer.bindTooltip(`Metrobús Line ${lineNumber}: ${routeName}`);
-      },
-    },
   },
   'metro-origins': {
     bounds: L.geoJSON(metroData.features.find((f) => f.properties.LINEA == '1')).getBounds(),
@@ -62,19 +50,6 @@ const slideOptions = {
           opacity: isLine1 ? 1.0 : 0.5,
           fillOpacity: isLine1 ? 0.9 : 0.6,
         };
-      },
-    },
-    layerTooltips: {
-      'metro': (feature, layer) => {
-        const lineNumber = feature.properties.LINEA;
-        const routeName = feature.properties.RUTA;
-        layer.bindTooltip(`Metro Line ${lineNumber}: ${routeName}`);
-      },
-      'metro-stations': (feature, layer) => {
-        const stationName = feature.properties.NOMBRE;
-        const lineNumber = feature.properties.LINEA;
-        const stationType = feature.properties.TIPO;
-        layer.bindTooltip(`${stationName}<br>Line ${lineNumber}<br>${stationType}`);
       },
     },
   },
@@ -110,19 +85,6 @@ const slideOptions = {
         };
       },
     },
-    layerTooltips: {
-      'metro': (feature, layer) => {
-        const lineNumber = feature.properties.LINEA;
-        const routeName = feature.properties.RUTA;
-        layer.bindTooltip(`Metro Line ${lineNumber}: ${routeName}`);
-      },
-      'metro-stations': (feature, layer) => {
-        const stationName = feature.properties.NOMBRE;
-        const lineNumber = feature.properties.LINEA;
-        const stationType = feature.properties.TIPO;
-        layer.bindTooltip(`${stationName}<br>Line ${lineNumber}<br>${stationType}`);
-      },
-    },
   },
   'metrobus-origins': {
     datasets: ['metrobus'],
@@ -135,13 +97,6 @@ const slideOptions = {
         };
       },
     },
-    layerTooltips: {
-      metrobus: (feature, layer) => {
-        const lineNumber = feature.properties.LINEA;
-        const routeName = feature.properties.RUTA;
-        layer.bindTooltip(`Metrobús Line ${lineNumber}: ${routeName}`);
-      },
-    },
   },
   'metrobus-growth-electrification': {
     datasets: ['metrobus'],
@@ -152,13 +107,6 @@ const slideOptions = {
           weight: 3,
           opacity: 0.7,
         };
-      },
-    },
-    layerTooltips: {
-      metrobus: (feature, layer) => {
-        const lineNumber = feature.properties.LINEA;
-        const routeName = feature.properties.RUTA;
-        layer.bindTooltip(`Metrobús Line ${lineNumber}: ${routeName}`);
       },
     },
   },
@@ -179,63 +127,15 @@ const slideOptions = {
   },
   'equity-access': {
     datasets: ['metro', 'metrobus'],
-    layerTooltips: {
-      metro: (feature, layer) => {
-        const lineNumber = feature.properties.LINEA;
-        const routeName = feature.properties.RUTA;
-        layer.bindTooltip(`Metro Line ${lineNumber}: ${routeName}`);
-      },
-      metrobus: (feature, layer) => {
-        const lineNumber = feature.properties.LINEA;
-        const routeName = feature.properties.RUTA;
-        layer.bindTooltip(`Metrobús Line ${lineNumber}: ${routeName}`);
-      },
-    },
   },
   'climate-public-space': {
     datasets: ['metro', 'metrobus'],
-    layerTooltips: {
-      metro: (feature, layer) => {
-        const lineNumber = feature.properties.LINEA;
-        const routeName = feature.properties.RUTA;
-        layer.bindTooltip(`Metro Line ${lineNumber}: ${routeName}`);
-      },
-      metrobus: (feature, layer) => {
-        const lineNumber = feature.properties.LINEA;
-        const routeName = feature.properties.RUTA;
-        layer.bindTooltip(`Metrobús Line ${lineNumber}: ${routeName}`);
-      },
-    },
   },
   'resilience-maintenance': {
     datasets: ['metro', 'metrobus'],
-    layerTooltips: {
-      metro: (feature, layer) => {
-        const lineNumber = feature.properties.LINEA;
-        const routeName = feature.properties.RUTA;
-        layer.bindTooltip(`Metro Line ${lineNumber}: ${routeName}`);
-      },
-      metrobus: (feature, layer) => {
-        const lineNumber = feature.properties.LINEA;
-        const routeName = feature.properties.RUTA;
-        layer.bindTooltip(`Metrobús Line ${lineNumber}: ${routeName}`);
-      },
-    },
   },
   'whats-next': {
     datasets: ['metro', 'metrobus'],
-    layerTooltips: {
-      metro: (feature, layer) => {
-        const lineNumber = feature.properties.LINEA;
-        const routeName = feature.properties.RUTA;
-        layer.bindTooltip(`Metro Line ${lineNumber}: ${routeName}`);
-      },
-      metrobus: (feature, layer) => {
-        const lineNumber = feature.properties.LINEA;
-        const routeName = feature.properties.RUTA;
-        layer.bindTooltip(`Metrobús Line ${lineNumber}: ${routeName}`);
-      },
-    },
   },
 };
 
