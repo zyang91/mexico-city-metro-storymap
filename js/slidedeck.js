@@ -42,7 +42,24 @@ class SlideDeck {
       if (!data) continue;
 
       const layerOptions = {
-        pointToLayer: (p, latlng) => L.marker(latlng),
+        pointToLayer: (feature, latlng) => {
+          // Create circle markers for metro stations
+          if (datasetName === 'metro-stations') {
+            const style = options.layerStyles && options.layerStyles[datasetName] ?
+                         options.layerStyles[datasetName](feature) :
+                         {
+                           radius: 2,
+                           fillColor: '#b7d4fcff',
+                           color: '#ffffff',
+                           weight: 1,
+                           opacity: 0.8,
+                           fillOpacity: 0.6,
+                         };
+            return L.circleMarker(latlng, style);
+          }
+          // Default marker for other point features
+          return L.marker(latlng);
+        },
         style: options.layerStyles && options.layerStyles[datasetName] ?
                options.layerStyles[datasetName] :
                (feature) => {
@@ -60,17 +77,32 @@ class SlideDeck {
                      opacity: 0.7,
                      dashArray: '5, 5',
                    };
+                 } else if (datasetName === 'metro-stations') {
+                   // Default style for metro stations (this is for line features, circle styles are in pointToLayer)
+                   return {
+                     radius: 2,
+                     fillColor: '#cbe1ffff',
+                     color: '#ffffff',
+                     weight: 1,
+                     opacity: 0.8,
+                     fillOpacity: 0.6,
+                   };
                  }
                  return {
-                   color: '#3388ff',
-                   weight: 3,
+                   color: '#c4ddffff',
+                   weight: 2,
                    opacity: 0.6,
                  };
                },
         onEachFeature: options.layerTooltips && options.layerTooltips[datasetName] ?
                       options.layerTooltips[datasetName] :
                       (feature, layer) => {
-                        if (feature.properties && feature.properties.LINEA && feature.properties.RUTA) {
+                        if (datasetName === 'metro-stations' && feature.properties && feature.properties.NOMBRE) {
+                          const stationName = feature.properties.NOMBRE;
+                          const lineNumber = feature.properties.LINEA;
+                          const stationType = feature.properties.TIPO || 'Station';
+                          layer.bindTooltip(`${stationName}<br>Line ${lineNumber}<br>${stationType}`);
+                        } else if (feature.properties && feature.properties.LINEA && feature.properties.RUTA) {
                           const lineNumber = feature.properties.LINEA;
                           const routeName = feature.properties.RUTA;
                           const systemName = datasetName === 'metro' ? 'Metro' : 'Metrobús';
