@@ -27,19 +27,6 @@ const slideOptions = {
   'intro-slide': {
     bounds: L.geoJSON(metroData).getBounds(),
     datasets: ['metro', 'metrobus'],
-    layerStyles: {
-      metro: (feature) => ({
-        color: `#${feature.properties.color}`,
-        weight: 4,
-        opacity: 0.8,
-      }),
-      metrobus: (feature) => ({
-        color: '#FF6B35', // Orange color for Metrobus
-        weight: 3,
-        opacity: 0.7,
-        dashArray: '5, 5', // Dashed line to distinguish from metro
-      }),
-    },
     layerTooltips: {
       metro: (feature, layer) => {
         const lineNumber = feature.properties.LINEA;
@@ -93,21 +80,6 @@ const slideOptions = {
   },
   'metro-today-upgrades': {
     datasets: ['metro', 'metro-stations'],
-    layerStyles: {
-      'metro': (feature) => ({
-        color: `#${feature.properties.color}`,
-        weight: 4,
-        opacity: 0.8,
-      }),
-      'metro-stations': (feature) => ({
-        radius: 3,
-        fillColor: '#4A90E2',
-        color: '#ffffff',
-        weight: 1,
-        opacity: 0.8,
-        fillOpacity: 0.7,
-      }),
-    },
     layerTooltips: {
       'metro': (feature, layer) => {
         const lineNumber = feature.properties.LINEA;
@@ -125,13 +97,7 @@ const slideOptions = {
   'metro-experience-safety': {
     datasets: ['metro', 'metro-stations'],
     layerStyles: {
-      'metro': (feature) => ({
-        color: `#${feature.properties.color}`,
-        weight: 4,
-        opacity: 0.8,
-      }),
       'metro-stations': (feature) => {
-        // Highlight transfer stations and terminals for safety context
         const isTransferOrTerminal = feature.properties.TIPO.includes('Transbordo') ||
                                     feature.properties.TIPO.includes('Terminal');
         return {
@@ -161,11 +127,13 @@ const slideOptions = {
   'metrobus-origins': {
     datasets: ['metrobus'],
     layerStyles: {
-      metrobus: (feature) => ({
-        color: '#FF6B35', // Orange color for Metrobus
-        weight: 4,
-        opacity: 0.9,
-      }),
+      'metrobus': (feature) => {
+        return {
+          color: '#FF6B35',
+          weight: 3,
+          opacity: 0.7,
+        };
+      },
     },
     layerTooltips: {
       metrobus: (feature, layer) => {
@@ -178,11 +146,13 @@ const slideOptions = {
   'metrobus-growth-electrification': {
     datasets: ['metrobus'],
     layerStyles: {
-      metrobus: (feature) => ({
-        color: '#FF6B35', // Orange color for Metrobus
-        weight: 4,
-        opacity: 0.9,
-      }),
+      'metrobus': (feature) => {
+        return {
+          color: '#FF6B35',
+          weight: 3,
+          opacity: 0.7,
+        };
+      },
     },
     layerTooltips: {
       metrobus: (feature, layer) => {
@@ -194,19 +164,6 @@ const slideOptions = {
   },
   'integration-fares': {
     datasets: ['metro', 'metrobus'],
-    layerStyles: {
-      metro: (feature) => ({
-        color: `#${feature.properties.color}`,
-        weight: 4,
-        opacity: 0.8,
-      }),
-      metrobus: (feature) => ({
-        color: '#FF6B35', // Orange color for Metrobus
-        weight: 3,
-        opacity: 0.7,
-        dashArray: '5, 5', // Dashed line to distinguish from metro
-      }),
-    },
     layerTooltips: {
       metro: (feature, layer) => {
         const lineNumber = feature.properties.LINEA;
@@ -222,19 +179,6 @@ const slideOptions = {
   },
   'equity-access': {
     datasets: ['metro', 'metrobus'],
-    layerStyles: {
-      metro: (feature) => ({
-        color: `#${feature.properties.color}`,
-        weight: 4,
-        opacity: 0.8,
-      }),
-      metrobus: (feature) => ({
-        color: '#FF6B35', // Orange color for Metrobus
-        weight: 3,
-        opacity: 0.7,
-        dashArray: '5, 5', // Dashed line to distinguish from metro
-      }),
-    },
     layerTooltips: {
       metro: (feature, layer) => {
         const lineNumber = feature.properties.LINEA;
@@ -250,19 +194,6 @@ const slideOptions = {
   },
   'climate-public-space': {
     datasets: ['metro', 'metrobus'],
-    layerStyles: {
-      metro: (feature) => ({
-        color: `#${feature.properties.color}`,
-        weight: 4,
-        opacity: 0.8,
-      }),
-      metrobus: (feature) => ({
-        color: '#FF6B35', // Orange color for Metrobus
-        weight: 3,
-        opacity: 0.7,
-        dashArray: '5, 5', // Dashed line to distinguish from metro
-      }),
-    },
     layerTooltips: {
       metro: (feature, layer) => {
         const lineNumber = feature.properties.LINEA;
@@ -278,19 +209,6 @@ const slideOptions = {
   },
   'resilience-maintenance': {
     datasets: ['metro', 'metrobus'],
-    layerStyles: {
-      metro: (feature) => ({
-        color: `#${feature.properties.color}`,
-        weight: 4,
-        opacity: 0.8,
-      }),
-      metrobus: (feature) => ({
-        color: '#FF6B35', // Orange color for Metrobus
-        weight: 3,
-        opacity: 0.7,
-        dashArray: '5, 5', // Dashed line to distinguish from metro
-      }),
-    },
     layerTooltips: {
       metro: (feature, layer) => {
         const lineNumber = feature.properties.LINEA;
@@ -306,19 +224,6 @@ const slideOptions = {
   },
   'whats-next': {
     datasets: ['metro', 'metrobus'],
-    layerStyles: {
-      metro: (feature) => ({
-        color: `#${feature.properties.color}`,
-        weight: 4,
-        opacity: 0.8,
-      }),
-      metrobus: (feature) => ({
-        color: '#FF6B35', // Orange color for Metrobus
-        weight: 3,
-        opacity: 0.7,
-        dashArray: '5, 5', // Dashed line to distinguish from metro
-      }),
-    },
     layerTooltips: {
       metro: (feature, layer) => {
         const lineNumber = feature.properties.LINEA;
