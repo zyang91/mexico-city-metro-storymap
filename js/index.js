@@ -104,6 +104,7 @@ const slideOptions = {
           color: `#${feature.properties.color}`,
           weight: 3,
           opacity: 0.7,
+          dashArray: '5, 5',
         };
       },
     },
@@ -116,6 +117,7 @@ const slideOptions = {
           color: `#${feature.properties.color}`,
           weight: 3,
           opacity: 0.7,
+          dashArray: '5, 5',
         };
       },
     },
