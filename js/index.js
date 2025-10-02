@@ -91,7 +91,7 @@ const slideOptions = {
     layerStyles: {
       'metrobus': (feature) => {
         return {
-          color: '#FF6B35',
+          color: `#${feature.properties.color}`,
           weight: 3,
           opacity: 0.7,
         };
@@ -103,7 +103,7 @@ const slideOptions = {
     layerStyles: {
       'metrobus': (feature) => {
         return {
-          color: '#FF6B35',
+          color: `#${feature.properties.color}`,
           weight: 3,
           opacity: 0.7,
         };
