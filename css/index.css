@@ -72,43 +72,49 @@ body {
   box-sizing: border-box;
   min-height: 100vh;
   font-family: Lora, serif;
+  background-color: antiquewhite;
 }
 
 
-.overview {
-  padding: 4rem 2rem;
-  text-align: center;
-  background: rgb(255 255 255/ 10%);
-  margin: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 8px 32px rgb(0 0 0/ 10%);
-}
-
-.overview h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: rgb(255 255 255);
-  margin-bottom: 1.5rem;
-  text-shadow: 2px 2px 4px rgb(0 0 0/ 50%);
-}
-
-.overview p {
-  font-family: Lora, serif;
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: rgb(255 255 255);
-  max-width: 800px;
-  margin: 0 auto;
-  text-shadow: 1px 1px 2px rgb(0 0 0/ 40%);
+.overview h2 { 
+  text-align: center; 
+  font-family: 'Playfair Display', 
+  serif; font-size: 2.5rem; 
+  font-weight: 600; 
+  color: rgb(14, 0, 0); 
+  margin-bottom: 1.5rem; 
+  text-shadow: 2px 2px 4px rgb(0 0 0/ 20%); 
+} 
+.overview p { 
+  font-family: Lora, serif; 
+  font-size: 1.2rem; 
+  line-height: 1.6; 
+  color: rgb(15, 0, 0); 
+  max-width: 800px; 
+  margin: 0 auto; 
+  text-shadow: 1px 1px 2px rgb(0 0 0/ 0%); 
+  margin-bottom:10vh; 
 }
 
 .header-emph {
   font-family:'Courier New', Courier, monospace;
-  color: #068c04;
+  color: #059f03;
   font-weight: 700;
 }
 
+.important-intext {
+  font-weight: bold;
+  color: #4CAF50;
+  text-shadow: 2px 2px 4px rgb(0 0 0/ 10%);
+}
+.credits{
+  font-size:0.5rem;
+  color:gray;
+  font-style:italic;
+  margin-top:-1rem;
+  margin-bottom:1rem;
+  display:block;
+}
 .map-container {
   position: sticky;
   top: 0;
@@ -235,55 +241,6 @@ ul {
   height:100 hv;
 }
 
-.map-legend {
-  background: white;
-  padding: 12px 16px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgb(0 0 0 / 25%);
-  max-height: 80vh;
-  overflow-y: auto;
-  font-family: Lora, serif;
-}
-
-.map-legend h4 {
-  margin: 0 0 12px;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #1a202c;
-}
-
-.map-legend .legend-section {
-  margin-top: 12px;
-  margin-bottom: 8px;
-  font-size: 0.9rem;
-  color: #2d3748;
-}
-
-.map-legend .legend-section:first-of-type {
-  margin-top: 0;
-}
-
-.map-legend .legend-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 6px;
-  font-size: 0.85rem;
-}
-
-.map-legend .legend-line {
-  display: inline-block;
-  width: 24px;
-  height: 4px;
-  margin-right: 8px;
-  border-radius: 2px;
-}
-
-.map-legend .legend-label {
-  color: #4a5568;
-  font-size: 0.8rem;
-}
-
 @media screen and (width < 480px) {
   .cover-title {
     font-size: 1.5rem;
@@ -304,6 +261,10 @@ ul {
 
   .overview {
     margin: 1rem;
+    min-height: 50vh;
+  }
+
+  .overview-overlay {
     padding: 2rem 1rem;
   }
 
@@ -327,37 +288,5 @@ ul {
 
   .slide p {
     font-size: 0.9rem;
-  }
-
-  .map-legend {
-    padding: 8px 10px;
-    max-height: 60vh;
-    font-size: 0.85rem;
-  }
-
-  .map-legend h4 {
-    font-size: 0.95rem;
-    margin-bottom: 8px;
-  }
-
-  .map-legend .legend-section {
-    margin-top: 8px;
-    margin-bottom: 6px;
-    font-size: 0.8rem;
-  }
-
-  .map-legend .legend-item {
-    margin-bottom: 4px;
-    font-size: 0.75rem;
-  }
-
-  .map-legend .legend-line {
-    width: 20px;
-    height: 3px;
-    margin-right: 6px;
-  }
-
-  .map-legend .legend-label {
-    font-size: 0.7rem;
   }
 }

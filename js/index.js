@@ -122,33 +122,6 @@ const slideOptions = {
       },
     },
   },
-  'integration-fares': {
-    datasets: ['metro', 'metrobus'],
-    layerTooltips: {
-      metro: (feature, layer) => {
-        const lineNumber = feature.properties.LINEA;
-        const routeName = feature.properties.RUTA;
-        layer.bindTooltip(`Metro Line ${lineNumber}: ${routeName}`);
-      },
-      metrobus: (feature, layer) => {
-        const lineNumber = feature.properties.LINEA;
-        const routeName = feature.properties.RUTA;
-        layer.bindTooltip(`Metrobús Line ${lineNumber}: ${routeName}`);
-      },
-    },
-  },
-  'equity-access': {
-    datasets: ['metro', 'metrobus'],
-  },
-  'climate-public-space': {
-    datasets: ['metro', 'metrobus'],
-  },
-  'resilience-maintenance': {
-    datasets: ['metro', 'metrobus'],
-  },
-  'whats-next': {
-    datasets: ['metro', 'metrobus'],
-  },
 };
 
 // ## The SlideDeck object
@@ -158,60 +131,6 @@ const deck = new SlideDeck(container, slides, map, slideOptions, {
   'metro-stations': metroStationsData,
 });
 
-// ## Add Legend
-const legend = L.control({position: 'topleft'});
-
-legend.onAdd = function() {
-  const div = L.DomUtil.create('div', 'map-legend');
-  div.innerHTML = '<h4>Transit Lines</h4>';
-
-  // Add Metro Lines
-  div.innerHTML += '<div class="legend-section"><strong>Metro</strong></div>';
-  const metroLines = [
-    {line: '1', color: 'F04E98', name: 'Observatorio - Pantitlán'},
-    {line: '2', color: '005EB8', name: 'Cuatro Caminos - Tasqueña'},
-    {line: '3', color: 'AF9800', name: 'Indios Verdes - Universidad'},
-    {line: '4', color: '6BBBAE', name: 'Martín Carrera - Santa Anita'},
-    {line: '5', color: 'FFD100', name: 'Politécnico - Pantitlán'},
-    {line: '6', color: 'DA291C', name: 'El Rosario - Martín Carrera'},
-    {line: '7', color: 'E87722', name: 'El Rosario - Barranca del Muerto'},
-    {line: '8', color: '009A44', name: 'Garibaldi - Constitución de 1917'},
-    {line: '9', color: '512F2E', name: 'Tacubaya - Pantitlán'},
-    {line: 'A', color: '981D97', name: 'Pantitlán - La Paz'},
-    {line: 'B', color: 'B1B3B3', name: 'Buenavista - Ciudad Azteca'},
-    {line: '12', color: 'B0A32A', name: 'Mixcoac - Tláhuac'},
-  ];
-
-  metroLines.forEach((item) => {
-    div.innerHTML += `<div class="legend-item">
-      <span class="legend-line" style="background-color: #${item.color}"></span>
-      <span class="legend-label">Line ${item.line}</span>
-    </div>`;
-  });
-
-  // Add Metrobús Lines
-  div.innerHTML += '<div class="legend-section"><strong>Metrobús</strong></div>';
-  const metrobusLines = [
-    {line: '1', color: 'D40D0D', name: 'Indios Verdes - El Caminero'},
-    {line: '2', color: '8D1A96', name: 'Tepalcates - Tacubaya'},
-    {line: '3', color: '7A9A01', name: 'Etiopia - Tenayuca'},
-    {line: '4', color: 'F48020', name: 'San Lázaro - Buenavista'},
-    {line: '5', color: '0071BC', name: 'San Lázaro - Glorieta Vaqueritos'},
-    {line: '6', color: 'E30613', name: 'El Rosario - Villa de Aragón'},
-    {line: '7', color: '128A3A', name: 'Campo Marte - Indios Verdes'},
-  ];
-
-  metrobusLines.forEach((item) => {
-    div.innerHTML += `<div class="legend-item">
-      <span class="legend-line" style="background-color: #${item.color}"></span>
-      <span class="legend-label">Line ${item.line}</span>
-    </div>`;
-  });
-
-  return div;
-};
-
-legend.addTo(map);
 
 document.addEventListener('scroll', () => deck.calcCurrentSlideIndex());
 
