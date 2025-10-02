@@ -273,10 +273,19 @@ ul {
   color: #0546b7;
 }
 
-.background-images{
-  position:sticky;
-  top:0;
-  height:100 hv;
+.background-images {
+  position: sticky;       /* stick it to the viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;         
+  z-index: -1;           
+}
+
+.background-images img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;     /* no distortion */
 }
 
 @media screen and (width < 480px) {
