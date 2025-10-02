@@ -24,9 +24,19 @@ const respMetroStations = await fetch('data/metro-station.geojson');
 const metroStationsData = await respMetroStations.json();
 
 const slideOptions = {
-  'intro-slide': {
+  'title-slide': {
     bounds: L.geoJSON(metroData).getBounds(),
     datasets: ['metro', 'metrobus'],
+    layerStyles: {
+      'metrobus': (feature) => {
+        return {
+          color: `#${feature.properties.color}`,
+          weight: 3,
+          opacity: 0.7,
+          dashArray: '5, 5',
+        };
+      },
+    },
   },
   'metro-origins': {
     bounds: L.geoJSON(metroData.features.find((f) => f.properties.LINEA == '1')).getBounds(),
