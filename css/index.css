@@ -96,6 +96,28 @@ body {
   margin-bottom:10vh; 
 }
 
+.acknowledgment {   
+  height: 100vh;  
+  width: 100%;    
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg,  rgb(66 77 92),rgba(67 92 92/ 74%));   
+  border: none;
+  margin: 0; 
+  padding: 5%; 
+  box-sizing: border-box;
+  color:#fff;
+}
+
+.acknowledgment h2 {
+  font-size: 1.5rem; 
+}
+
+.acknowledgment li {
+  color:#ffffffcb;
+  font-size: 0.8rem;
+}
+
 .header-emph {
   font-family:'Courier New', Courier, monospace;
   color: #059f03;
@@ -305,5 +327,17 @@ ul {
 
   .slide p {
     font-size: 0.9rem;
+  }
+
+  .acknowledgment {
+    padding: 2rem 1rem;
+  }
+
+  .acknowledgment h2 {
+    font-size: 2rem;
+  }
+
+  .acknowledgment p {
+    font-size: 1rem;
   }
 }
