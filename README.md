@@ -1,7 +1,7 @@
 # Inside Mexico City's High-Capacity Transit: <br> Metro and Metrobús Shaping Flows of People, Places, and Possibility
 
 **Author:** Zhanchao Yang  
-**Date:** September 24, 2025
+**Date:** October 3, 2025
 
 ## Project Overview
 
@@ -19,8 +19,7 @@ The story map covers multiple dimensions of Mexico City's transit system:
 
 2. **Metrobús (BRT) System**
    - **Origins**: Launched in 2005 with center-running busways, off-board fare collection, and level boarding
-   - **Growth & Electrification**: Multiple corridors connecting major hubs, fleet renewal with articulated vehicles and zero-emission buses
-   - **Airport Access**: Dedicated alignments providing direct connections to major transit nodes
+   - **Growth & Electrification**: Multiple corridors connecting major hubs, fleet renewal with articulated vehicles, and zero-emission buses
 
 3. **System Integration & Equity**
    - **Transfers and MI Card**: Unified fare system simplifying interchanges between Metro, Metrobús, and other modes
@@ -28,25 +27,17 @@ The story map covers multiple dimensions of Mexico City's transit system:
    - **Accessibility**: Retrofits including ramps, elevators, and tactile paving for universal access
 
 4. **Sustainability & Urban Impact**
-   - **Climate Benefits**: Mode shift reducing carbon emissions, congestion, and freeing street space
+   - **Climate Benefits**: Mode shift reduces carbon emissions, congestion, and frees street space
    - **Public Space**: Enhanced streetscapes with trees, shade, seating, and stormwater management
-   - **Operations & Resilience**: Preventative maintenance, power redundancy, drainage systems, and transparent performance reporting
+   - **Operations & Resilience**: Preventive maintenance, power redundancy, drainage systems, and transparent performance reporting
 
 5. **Future Vision**: Reliable core service, zero-emission fleets, equitable coverage, orbital links, and upgraded stations supporting a healthier, more connected, and resilient Mexico City
 
 ## Target Audience
 
-### Primary Audience
 - **Urban planning professionals** seeking insights into large-scale transit system design and implementation
-- **Transportation researchers** studying Bus Rapid Transit (BRT) and metro system integration
-- **Policy makers** interested in sustainable urban mobility solutions for megacities
-- **Students** in urban studies, transportation planning, geography, and sustainability programs
-
-### Secondary Audience
-- **Mexico City residents** wanting to better understand their transit system's evolution and future
+- **Mexico City residents** wanting better to understand their transit system's evolution and future
 - **International visitors** planning to navigate the city's public transportation
-- **Transit enthusiasts** interested in global metro and BRT systems
-- **Journalists and media professionals** covering urban transportation and climate topics
 
 ## Data Sources
 
@@ -57,16 +48,12 @@ The story map covers multiple dimensions of Mexico City's transit system:
 
 ### Primary Data Sources
 - **Sistema de Transporte Colectivo Metro** (Mexico City Metro): Official metro system data and network information - https://metro.cdmx.gob.mx/
-- **Metrobús Official Website**: Bus Rapid Transit system data and corridor information
 - **Mexico City Government Open Data Portal**: https://mexicocity.cdmx.gob.mx/
 
 ### Map Imagery & Attribution
 - **Base Map**: CartoDB Dark Matter tiles via https://carto.com/
 - **Base Map Data**: © OpenStreetMap contributors - https://www.openstreetmap.org/copyright
 - **Station Icons**: Wikipedia - https://en.wikipedia.org/wiki/Mexico_City_Metro
-
-### Research & Background
-- Dr. Erick Guerra's research on the Mexico City transit system provided inspiration and context for this project
 
 ## Technical Details
 
@@ -97,22 +84,11 @@ mexico-city-metro-storymap/
 └── pic/                   # Images and icons used throughout the story map
 ```
 
-### Features
-- **Responsive Design**: Works on desktop and mobile browsers
-- **Interactive Map**: Click and hover tooltips displaying station names and line information
-- **Scroll-Driven Narrative**: Map view updates automatically as user scrolls through story sections
-- **Custom Styling**: Feature styling based on properties (line colors, station highlighting)
-- **Smooth Transitions**: Animated map transitions between story sections
-
 ## Viewing the Story Map
 
 This project is deployed via GitHub Pages. Visit the live story map at:
 https://zyang91.github.io/mexico-city-metro-storymap/
 
-### Running Locally
-1. Clone the repository
-2. Open `index.html` in a modern web browser
-3. No build process required - the project uses vanilla JavaScript with ES6 modules
 
 ## Acknowledgments
 
@@ -134,3 +110,5 @@ https://zyang91.github.io/mexico-city-metro-storymap/
 ---
 
 *This story map demonstrates the power of combining geographic data, interactive visualization, and narrative storytelling to communicate complex urban systems and their impact on metropolitan life. The project aims to highlight the vital role of public transit in creating more sustainable, equitable, and connected cities.*
+
+*Work for MUSA-Javascript course*
