@@ -129,6 +129,12 @@ body {
   text-shadow: 2px 2px 4px rgb(0 0 0/ 10%);
 }
 
+.important-intext-level2 {
+  font-weight: bold;
+  color: #042cb0;
+  text-shadow: 2px 2px 4px rgb(0 0 0/ 10%);
+}
+
 .credits{
   font-size:0.5rem;
   color:gray;
