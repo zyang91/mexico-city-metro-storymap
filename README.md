@@ -1,11 +1,12 @@
 # Inside Mexico City's High-Capacity Transit: <br> Metro and Metrobús Shaping Flows of People, Places, and Possibility
 
 **Author:** Zhanchao Yang  
-**Date:** October 3, 2025
+**Date:** October 3, 2025 <br>
+https://zyang91.github.io/mexico-city-metro-storymap/
 
 ## Project Overview
 
-This interactive story map explores Mexico City's comprehensive high-capacity transit system, featuring both the Metro and Metrobús (Bus Rapid Transit) networks. Through data visualization and narrative storytelling, the project illustrates how these transportation systems anchor daily life at a metropolitan scale, connecting distant neighborhoods and shaping urban flows across one of the world's largest cities.
+This interactive story map explores Mexico City's comprehensive high-capacity transit system, featuring both the Metro and Metrobús (Bus Rapid Transit) networks. Through data visualization and narrative storytelling, the project illustrates how these transportation systems anchor daily life at a metropolitan scale, connecting distant neighborhoods and shaping urban flows across one of the world's largest cities. This project is deployed via GitHub Pages. 
 
 ### Content Overview
 
@@ -84,10 +85,6 @@ mexico-city-metro-storymap/
 └── pic/                   # Images and icons used throughout the story map
 ```
 
-## Viewing the Story Map
-
-This project is deployed via GitHub Pages. Visit the live story map at:
-https://zyang91.github.io/mexico-city-metro-storymap/
 
 
 ## Acknowledgments
