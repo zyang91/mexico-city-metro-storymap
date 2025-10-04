@@ -3,11 +3,10 @@ import { SlideDeck } from './slidedeck.js';
 const map = L.map('map', {scrollWheelZoom: false}).setView([0, 0], 0);
 
 // ## The Base Tile Layer
-const mapboxStyle = 'mapbox/light-v11';
 const mapboxKey = 'pk.eyJ1IjoiemhhbmNoYW8iLCJhIjoiY21nYm1mOGNpMTlycTJtb2xuczUwdjY1aCJ9.KRjlJ3Siuf2p0OKSsngcGw';
 
 const baseTileLayer = L.tileLayer(
-    `https://api.mapbox.com/styles/v1/${mapboxStyle}/tiles/{z}/{x}/{y}{r}?access_token=${mapboxKey}`,
+    `https://api.mapbox.com/styles/v1/mapbox/light-v11/tiles/{z}/{x}/{y}{r}?access_token=${mapboxKey}`,
     {
       maxZoom: 16,
       attribution: '&copy; <a href="https://www.mapbox.com/" target="_blank">Mapbox</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>',
