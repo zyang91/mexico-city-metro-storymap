@@ -157,20 +157,6 @@ class SlideDeck {
     const layers = this.updateDataLayer(datasetNames, options);
 
     /**
-     * Create a bounds object from a GeoJSON bbox array.
-     * @param {Array} bbox The bounding box of the collection
-     * @return {L.latLngBounds} The bounds object
-     */
-    const boundsFromBbox = (bbox) => {
-      const [west, south, east, north] = bbox;
-      const bounds = L.latLngBounds(
-          L.latLng(south, west),
-          L.latLng(north, east),
-      );
-      return bounds;
-    };
-
-    /**
      * Create a temporary event handler that will show tooltips on the map
      * features, after the map is done "flying" to contain the data layer.
      */
