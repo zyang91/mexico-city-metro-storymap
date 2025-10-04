@@ -133,6 +133,20 @@ body {
   color: #042cb0;
 }
 
+.moving-forward {
+  color: #5504f6;
+}
+
+.moving-intext {
+  font-weight: bold;
+  color: #5504f6;
+}
+
+.moving-intext-level2 {
+  font-weight: bold;
+  color: #2302a8;
+}
+
 .credits{
   font-size:0.5rem;
   color:gray;
