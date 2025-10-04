@@ -123,6 +123,12 @@ body {
   font-weight: 700;
 }
 
+.header-emph1 {
+  font-family:'Courier New', Courier, monospace;
+  color: #042cb0;
+  font-weight: 700;
+}
+
 .important-intext {
   font-weight: bold;
   color: #4CAF50;
@@ -131,10 +137,6 @@ body {
 .important-intext-level2 {
   font-weight: bold;
   color: #042cb0;
-}
-
-.moving-forward {
-  color: #5504f6;
 }
 
 .moving-intext {
